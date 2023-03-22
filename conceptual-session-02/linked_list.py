@@ -56,8 +56,20 @@ class Linked_list:
                     print('Output of bound')
                     return
             delNode=tmp.next
-            tmp.next=delNode.next
+            if tmp.next==None:
+                    print('Output of bound')
+                    return
+            tmp.next=tmp.next.next
             del delNode
+    def reverse(self):
+        if self.head.next==None:
+            return self.head
+        save = self.head
+        self.head = self.head.next
+        newHead = self.reverse()
+        save.next.next=save
+        save.next=None
+        return newHead
 
     def print_linked_list(self):
         tmp=self.head
@@ -70,9 +82,11 @@ def main():
     list.insert_at_tail(10)
     list.insert_at_tail(20)
     list.insert_at_tail(30)
-    list.insert_at_head(5)
-    list.insert_at_pos(1,15)
-    list.del_at_pos(0)
+    # list.insert_at_head(5)
+    # list.insert_at_pos(1,15)
+    # list.del_at_pos(0)
+    # list.print_linked_list()
+    list.head=list.reverse()
     list.print_linked_list()
 
 main()
